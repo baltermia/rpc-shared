@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Balter.Rpc.Shared;
 
-public class JsonRpcClient : IJsonRpcClient
+public class JsonRpcClient : IRpcClient
 {
     private readonly HttpClient _client;
 
@@ -22,7 +22,7 @@ public class JsonRpcClient : IJsonRpcClient
         };
     }
 
-    public async Task<Response<TResponse>?> GetFromJsonAsync<TResponse>(string method, IRequestParams data)
+    public async Task<Response<TResponse>?> SendRequestAsync<TResponse>(string method, IRequestParams data)
     {
         string guid = Guid.NewGuid().ToString();
             
